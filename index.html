@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AddEventListener</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <style>
+        .card {
+            border: 5px solid #000000;
+            padding: 10px;
+            margin: 10px;
+            width: auto;
+            border-radius: 10px;
+            background-color: skyblue;
+        }
+        .card h3 {
+            text-align: center;
+            margin: 0;
+            padding: 5px 0;
+            border-bottom: 1px solid #000000;
+        }
+
+    </style>
+</head>
+<body style="background-color: aliceblue;">
+    <div id="cardContainer"></div>
+    <form id="cardForm" style="text-align: center;">
+        <label for="title">Title:</label>
+        <input type="text" id="title" name="title"><br><br>
+        <label for="body">Body:</label><br>
+        <textarea id="body" name="body"></textarea><br><br>
+        <button type="button" onclick="addCard()">Add Card</button>
+    </form>
+
+    <script>
+        function addCard() {
+            var title = document.getElementById('title').value;
+            var body = document.getElementById('body').value;
+
+            if (!title || !body) {
+                alert('Please enter both title and body');
+                return;
+            }
+
+            var cardContainer = document.getElementById('cardContainer');
+            var card = document.createElement('div');
+            card.className = 'card';
+            card.innerHTML = '<h3>' + title + '</h3><p>' + body + '</p><button onclick="deleteCard(this)">Delete</button>';
+            cardContainer.appendChild(card);
+
+
+            document.getElementById('title').value = '';
+            document.getElementById('body').value = '';
+        }
+
+        function deleteCard(button) {
+            button.parentNode.remove();
+        }
+    </script>
+</body>
+</html>
